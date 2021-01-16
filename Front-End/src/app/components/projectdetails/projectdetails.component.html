@@ -1,0 +1,44 @@
+<app-nav-bar></app-nav-bar>
+
+
+<div class="container">
+    <h2> Product List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> Product Name</th>
+                <th> Product Description </th>
+                <th> Product Quantity </th>
+                <th> Product Cost Price </th>
+                <th> Product Selling Price </th>
+                <th> Select Quantity </th>
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td> {{ product.productName }} </td>
+                <td> {{ product.productDescription }} </td>
+                <td> {{ product.productQuantity }} </td>
+                <td> {{ product.productCostPrice }} </td>
+                <td> {{ product.productSellingPrice }} </td>
+                <td>
+                    <!--  <input  [ngModel]="acptQunatity" type="number" id="quantity"
+                        class="qty" name="quantity" min="1" max="30" (keyup.enter)="OnInput($event)">
+                   -->
+                    <!-- <form (ngSubmit)="onSbt($event)">
+                        <input name="player" value="Name">
+                    </form> -->
+
+                    <input #box1 [ngModel]="resetQty" type="number" (keyup.enter)="update1(box1.value)" (blur)="update1(box1.value)" min="1"
+                        max="30">
+                </td>
+                <td><button (click)="sellProduct(product.productId)" class="btn btn-info">Sell</button></td>
+                <td>
+                    <button (click)="addToSellCart(product.productId)" class="btn btn-info">Add to Cart</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

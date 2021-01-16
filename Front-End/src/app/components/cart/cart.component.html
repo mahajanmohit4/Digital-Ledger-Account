@@ -1,0 +1,43 @@
+<app-nav-bar></app-nav-bar>
+
+
+
+<div class="container">
+    <h2> Cart List</h2>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th> Product Name</th>
+                <th> Product Description </th>
+                <th> Product Quantity </th>
+                <th> Product Cost Price </th>
+                <th> Product Selling Price </th>
+                <th> Select Quantity </th>
+                <th> Discount </th>
+
+
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cartitems of cartitem">
+                <td> {{ cartitems.PName }} </td>
+                <td> {{ cartitems.PDisc }} </td>
+                <td> {{ cartitems.PQuantity }} </td>
+                <td> {{ cartitems.PCP }} </td>
+                <td> {{ cartitems.PSP }} </td>
+                <td>               
+                    <input #box1 [ngModel]="resetQty" type="number"  (keyup.enter)="update1(box1.value)" (blur)="update1(box1.value)" min="1"
+                        max="30"  (blur)="updateItemQuantity(cartitems.CID)">
+                </td>
+                <td>
+                    <input type="number">
+                </td>
+                <td>
+                    <button (click) = "deleteProduct(cartitems.CID)" class = "btn btn-danger" style="margin-left: 10px"> Remove</button>
+                   
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

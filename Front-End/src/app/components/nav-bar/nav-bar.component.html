@@ -1,0 +1,24 @@
+<div class="bs-example">
+    <nav class="navbar navbar-expand-md navbar-light bg-dark">
+
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav text-light">
+                <h4> <a routerLink="/dashboard/" class="nav-item nav-link active text-warning font-weight-bold">Digital
+                        Ledger Account</a></h4>
+
+            </div>
+            <div class="navbar-nav ml-auto">
+                <a routerLink="/productdetails/" class="nav-item nav-link text-light">Poduct Details</a>
+                <a routerLink="/cart/" class="nav-item nav-link text-light">Cart</a>
+                <a href="#" class="nav-item nav-link text-light">Contact Us</a>
+
+
+                <a (click)="logout()" routerLink="/login/" class="nav-item nav-link text-light">Logout</a>
+            </div>
+        </div>
+    </nav>
+</div>
