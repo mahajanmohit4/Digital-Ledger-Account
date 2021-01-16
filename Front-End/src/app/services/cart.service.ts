@@ -10,6 +10,7 @@ import { Cart } from '../classes/cart';
 export class CartService {
 
   private baseUrl = "http://localhost:8080/api/v1/cart";
+  private baseUrl2 = "http://localhost:8080/api/v1/cartdisount";
   constructor( private httpClient: HttpClient) { }
 
   getCartList(): Observable<Cart[]>{
@@ -23,5 +24,8 @@ export class CartService {
   }
   updateCart(id:number | undefined, cart:Cart): Observable<object>{
     return this.httpClient.put(`${this.baseUrl}/${id}`, cart)
+  }
+  updateDiscount(id:number | undefined, cart:Cart): Observable<object>{
+    return this.httpClient.put(`${this.baseUrl2}/${id}`, cart)
   }
 }

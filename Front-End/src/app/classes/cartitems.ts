@@ -9,10 +9,11 @@ export class Cartitems {
     PSP: number | undefined;    
     TAmount: number | undefined;
     IQuanitity: number | undefined;
+    Disount: number;
     ID: number | undefined;
 
 
-    constructor(cid:number, pid:number, pname:string, pdisc:string, pquantity:number, pcp:number,  psp:number ){
+    constructor(cid:number, pid:number, pname:string, pdisc:string, pquantity:number, pcp:number,  psp:number ,iquanitity:number, disount: number){
         this.CID = cid;
         this.PID = pid;
         this.PName = pname;
@@ -20,5 +21,7 @@ export class Cartitems {
         this.PCP = pcp;
         this.PDisc = pdisc;
         this.PSP = psp;
+        this.IQuanitity = iquanitity;
+        this.Disount = disount;
     }
 }

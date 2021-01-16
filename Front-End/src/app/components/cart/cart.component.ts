@@ -1,4 +1,5 @@
 
+import { leadingComment } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -38,6 +39,8 @@ public resetQty:number | any;
     this.resetQty = 1;
     this.getCarts();
     this.getProducts();
+    // this.updateItemQuantity(1);
+    // this.updateDiscount(1);
     // this.getAllCartData();
    // this.hello();
   }
@@ -51,12 +54,23 @@ public resetQty:number | any;
     console.log(value1);     
     
   }
+
+  value2 = '';
+  disct: number | any;
+  update2(value2: string) { 
+    this.value1 = value2;  
+    this.disct = +value2;
+    console.log("item qty : "+this.disct);
+    console.log("type of final : "+typeof(this.disct));
+    console.log(value2);     
+    
+  }
  
  // let productsZ: Product[] = [];
   private getCarts() {
     this.cartService.getCartList().subscribe(data => {
       this.carts = data;
-      //console.log(this.carts);
+      console.log(this.carts);
 
     })
   }
@@ -96,16 +110,12 @@ public resetQty:number | any;
       
       for(var i=0; i<this.products.length; i++){
         if(this.carts[j].productId == this.products[i].productId){
-          this.cartitem.push(new Cartitems(this.carts[j].cartId, this.products[i].productId, this.products[i].productName, this.products[i].productDescription, this.products[i].productQuantity, this.products[i].productCostPrice, this.products[i].productSellingPrice))
+          this.cartitem.push(new Cartitems(this.carts[j].cartId, this.products[i].productId, this.products[i].productName, this.products[i].productDescription, this.products[i].productQuantity, this.products[i].productCostPrice, this.products[i].productSellingPrice, this.carts[j].itemsQuantity, this.carts[j].discount))
           //console.log(this.carts[j].cartId);
-          //console.log(this.products[i].productSellingPrice);  
-                          
-         
-        }        
+          //console.log(this.products[i].productSellingPrice);               
+         }        
       }
-
-    
-     
+        
    }
   
   
@@ -128,11 +138,84 @@ public resetQty:number | any;
     this.cart.itemsQuantity = Number(this.itmqty);
     console.log("final qty "+this.cart.itemsQuantity);
     console.log("type of : "+typeof(this.itmqty));
-    this.cart.discount = 11;
+    //this.cart.discount = 11;
     this.cartService.updateCart(id, this.cart).subscribe( data =>{
+      console.log(data);
+      
+    }, error => console.log(error));
+
+
+   //this.hellodemo()
+  }
+
+  updateDiscount(id: number | undefined){
+    console.log("item discount updated !!");
+    this.cart.cartId = id;   
+    console.log("type of : "+typeof(this.disct));
+    //this.cart.discount = 11;
+    this.cart.discount = Number(this.disct);
+
+    console.log("final qty "+this.cart.discount);
+    this.cartService.updateDiscount(id, this.cart).subscribe( data =>{
       console.log(data);
       
     }, error => console.log(error))
 
+
+  //  this.hellodemo()
+ }
+
+ hellodemo(){
+  this.totalAmounts()
+ }
+
+
+ dicountCatculator(Discount:number |any, SPrice:number | any, Qtys:number |any){
+   var totalprice = SPrice*Qtys;
+   var d = Discount/100;
+   var totalamount = totalprice*d;
+    return totalamount;
+ }
+ 
+
+totalAmt: number | undefined;
+ totalAmounts(){
+  this.cartService.getCartList().subscribe(data => {
+    this.carts = data;
+    console.log(this.carts);
+
+  })
+
+  console.log(this.carts);
+  this.totalAmt = 0;
+  // for(var t =0; t<this.carts.length; t++){
+  //   this.totalAmt= this.totalAmt+this.carts[t].itemsQuantity;
+  // }
+  
+  console.log("Total Amount is : "+ this.totalAmt);
+  console.log(this.cartitem);
+
+  var dis = this.dicountCatculator(100,10,11);
+  console.log(typeof(dis));
+  console.log();
+  var iqty;
+  var pprice;
+  var dist;
+  for(var i =0 ; i<this.cartitem.length; i++){
+   // console.log(this.cartitem[i].CID);
+    iqty = this.cartitem[i].IQuanitity ;
+    pprice = this.cartitem[i].PSP;
+    dist = this.cartitem[i].Disount;
+   this.totalAmt =  this.dicountCatculator(dist,pprice,iqty);
   }
+
+  
+  
+  console.log(this.totalAmt);
+  
+
+ }
+
+
+
 }

@@ -26,11 +26,12 @@
                 <td> {{ cartitems.PCP }} </td>
                 <td> {{ cartitems.PSP }} </td>
                 <td>               
-                    <input #box1 [ngModel]="resetQty" type="number"  (keyup.enter)="update1(box1.value)" (blur)="update1(box1.value)" min="1"
+                    <input #box1 [ngModel]="cartitems.IQuanitity" type="number"  (keyup.enter)="update1(box1.value)" (blur)="update1(box1.value)" min="1"
                         max="30"  (blur)="updateItemQuantity(cartitems.CID)">
                 </td>
                 <td>
-                    <input type="number">
+                    <input #box2 [ngModel]="cartitems.Disount" type="number"  (keyup.enter)="update2(box2.value)" (blur)="update2(box2.value)" min="0"
+                        max="100"  (blur)="updateDiscount(cartitems.CID)">
                 </td>
                 <td>
                     <button (click) = "deleteProduct(cartitems.CID)" class = "btn btn-danger" style="margin-left: 10px"> Remove</button>
@@ -39,5 +40,5 @@
             </tr>
         </tbody>
     </table>
-
+    <button (click) = "totalAmounts()" class = "btn btn-danger" > Get Amount</button>
 </div>
