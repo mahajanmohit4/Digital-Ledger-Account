@@ -40,7 +40,7 @@ export class AddproductComponent implements OnInit {
     });
   }
   saveProduct(){
-   // this.product.categoryId = 1;
+   // this.product.categoryId = 9;
     this.productService.createProduct(this.product).subscribe(data => {
       console.log(data);
       window.alert("Product Added successfully !!");
@@ -53,8 +53,35 @@ export class AddproductComponent implements OnInit {
   }
 
   onSubmit(){
+    //this.product.categoryId = this.category.categoryId;
+  //  this.product.categoryId = this.category.categoryId;
+  //  let cid = document.getElementById('categoryId');
+  //   console.log(cid);
+    
+  //  this.product.categoryId = Number(cid);
+
     console.log(this.product);
     this.saveProduct();
     
   }
+  categoryIdUpdated(cid:number | any){
+   
+    //this.product.categoryId = cid;
+    console.log("cid ",cid);
+    console.log("heloosadfh");
+    
+  }
+  selected:number = 0;
+  public onOptionsSelected(event:any){
+    
+    const value = event.target.value;
+    this.selected = value;
+    this.product.categoryId = this.selected;
+    console.log(value, this.product.categoryId);
+    console.log(this.product);
+    
+  }
 }
+
+
+

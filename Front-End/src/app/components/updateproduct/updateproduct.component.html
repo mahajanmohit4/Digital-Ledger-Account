@@ -35,12 +35,14 @@
                 [(ngModel)] = "product.productSellingPrice" name = "productSellingPrice">
         </div>
         
-        <label> Category </label>
-        <select name="categoryId" id="categoryId">
-            <option *ngFor = "let category of categorys" value="">{{category.categoryName}}</option>
-            
-          </select>
-        <br>
+        <div>
+            <label> Category </label>
+            <select class='select-option' [(ngModel)]="selected" (change)='onOptionsSelected($event)'>
+                <option class='option' *ngFor='let category of categorys' [value]="category.categoryId">
+                    {{category.categoryName}} {{category.categoryId}}</option>
+            </select>
+        
+        </div>
         <button class = "btn btn-success" type ="submit">Submit</button>
     
     </form>

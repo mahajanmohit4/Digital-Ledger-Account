@@ -1,7 +1,9 @@
 
-import { leadingComment } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { promise } from 'protractor';
+
+
 
 import { Cart } from 'src/app/classes/cart';
 import { Cartitems } from 'src/app/classes/cartitems';
@@ -19,7 +21,7 @@ export class CartComponent implements OnInit {
   carts: Cart[] | any;
   products: Product[] | any;
   cartitems1: Cartitems[] | any;
-  
+
   cartitem: Cartitems[] = [];
 
   cart: Cart = new Cart();
@@ -29,10 +31,10 @@ export class CartComponent implements OnInit {
     private router: Router,
     private productService: ProductService) { }
 
-demoX : object[] | any;
+  demoX: object[] | any;
 
 
-public resetQty:number | any;
+  public resetQty: number | any;
 
 
   ngOnInit(): void {
@@ -42,31 +44,31 @@ public resetQty:number | any;
     // this.updateItemQuantity(1);
     // this.updateDiscount(1);
     // this.getAllCartData();
-   // this.hello();
+    // this.hello();
   }
   value1 = '';
   itmqty: number | any;
-  update1(value1: string) { 
-    this.value1 = value1;  
+  update1(value1: string) {
+    this.value1 = value1;
     this.itmqty = +value1;
-    console.log("item qty : "+this.itmqty);
-    console.log("type of final : "+typeof(this.itmqty));
-    console.log(value1);     
-    
+    console.log("item qty : " + this.itmqty);
+    console.log("type of final : " + typeof (this.itmqty));
+    console.log(value1);
+
   }
 
   value2 = '';
   disct: number | any;
-  update2(value2: string) { 
-    this.value1 = value2;  
+  update2(value2: string) {
+    this.value1 = value2;
     this.disct = +value2;
-    console.log("item qty : "+this.disct);
-    console.log("type of final : "+typeof(this.disct));
-    console.log(value2);     
-    
+    console.log("item qty : " + this.disct);
+    console.log("type of final : " + typeof (this.disct));
+    console.log(value2);
+
   }
- 
- // let productsZ: Product[] = [];
+
+  // let productsZ: Product[] = [];
   private getCarts() {
     this.cartService.getCartList().subscribe(data => {
       this.carts = data;
@@ -79,143 +81,186 @@ public resetQty:number | any;
     this.productService.getProductList().subscribe(data => {
       this.products = data;
       this.demoX = data;
-      // console.log(data);
-     this.demo();
-    // this.hello();
+       console.log(data);
+      this.demo();
+      // this.hello();
     })
   }
- 
 
-  demo(){
+
+  demo() {
     this.hello()
     console.log(this.cartitem);
     console.log(this.cartitem.length);
-    
-    for(var i =0 ; i<this.cartitem.length; i++){
+
+    for (let i = 0; i < this.cartitem.length; i++) {
       console.log(this.cartitem[i].CID);
-      
+
     }
   }
   hello() {
-  
+
     console.log("Hello");
     console.log(this.carts);
-    console.log(this.products); 
+    console.log(this.products);
     console.log(this.products.length);
-    
-   // var x = JSON.parse(this.carts);
- //  console.log(this.cartitems1.length);
-   
-   for(var j =0; j<this.carts.length; j++){
-      
-      for(var i=0; i<this.products.length; i++){
-        if(this.carts[j].productId == this.products[i].productId){
+
+    // let x = JSON.parse(this.carts);
+    //  console.log(this.cartitems1.length);
+    console.log(this.cartitem,"old ");
+    for (let j = 0; j < this.carts.length; j++) {
+
+      for (let i = 0; i < this.products.length; i++) {
+        if (this.carts[j].productId == this.products[i].productId) {
           this.cartitem.push(new Cartitems(this.carts[j].cartId, this.products[i].productId, this.products[i].productName, this.products[i].productDescription, this.products[i].productQuantity, this.products[i].productCostPrice, this.products[i].productSellingPrice, this.carts[j].itemsQuantity, this.carts[j].discount))
           //console.log(this.carts[j].cartId);
           //console.log(this.products[i].productSellingPrice);               
-         }        
+        }
       }
-        
-   }
-  
-  
+
+    }
+
+    console.log(this.cartitem, "new ");
     
+
+
+
   }
 
 
-  deleteProduct(id: number | undefined){
-    this.cartService.deleteCart(id).subscribe(data =>{
+  deleteProduct(id: number | undefined) {
+    this.cartService.deleteCart(id).subscribe(data => {
       console.log(data);
       this.cartitem = [];
       this.ngOnInit()
-      
+
     })
   }
 
-  updateItemQuantity(id: number | undefined){
+  updateItemQuantity(id: number | undefined) {
     console.log("item quantity updated !!");
     this.cart.cartId = id;
     this.cart.itemsQuantity = Number(this.itmqty);
-    console.log("final qty "+this.cart.itemsQuantity);
-    console.log("type of : "+typeof(this.itmqty));
+    console.log("final qty " + this.cart.itemsQuantity);
+    console.log("type of : " + typeof (this.itmqty));
     //this.cart.discount = 11;
-    this.cartService.updateCart(id, this.cart).subscribe( data =>{
+    this.cartService.updateCart(id, this.cart).subscribe(data => {
       console.log(data);
-      
+
     }, error => console.log(error));
 
+    // this.cartitem = [];
+    // this.hello();
 
-   //this.hellodemo()
+    for (let i = 0; i < this.cartitem.length; i++) {
+      
+      if(this.cartitem[i].CID == id){
+        this.cartitem[i].IQuanitity = this.itmqty;
+      }
+    }
+
+    //this.hellodemo()
   }
 
-  updateDiscount(id: number | undefined){
+  
+  updateDiscount(id: number | undefined) {
+    //debugger;
     console.log("item discount updated !!");
-    this.cart.cartId = id;   
-    console.log("type of : "+typeof(this.disct));
+    this.cart.cartId = id;
+    console.log("type of : " + typeof (this.disct));
     //this.cart.discount = 11;
     this.cart.discount = Number(this.disct);
 
-    console.log("final qty "+this.cart.discount);
-    this.cartService.updateDiscount(id, this.cart).subscribe( data =>{
+   // debugger
+    const promiseA = new Promise( (rosolve,reject) => {
+      
+      this.cartService.updateDiscount(id, this.cart).subscribe(data => {
+        console.log(data);
+        rosolve(data);
+      }, error => console.log(error))
+    });
+    
+    promiseA.then( data => {
       console.log(data);
       
-    }, error => console.log(error))
-
-
-  //  this.hellodemo()
- }
-
- hellodemo(){
-  this.totalAmounts()
- }
-
-
- dicountCatculator(Discount:number |any, SPrice:number | any, Qtys:number |any){
-   var totalprice = SPrice*Qtys;
-   var d = Discount/100;
-   var totalamount = totalprice*d;
-    return totalamount;
- }
- 
-
-totalAmt: number | undefined;
- totalAmounts(){
-  this.cartService.getCartList().subscribe(data => {
-    this.carts = data;
-    console.log(this.carts);
-
-  })
-
-  console.log(this.carts);
-  this.totalAmt = 0;
-  // for(var t =0; t<this.carts.length; t++){
-  //   this.totalAmt= this.totalAmt+this.carts[t].itemsQuantity;
-  // }
+    })
+    console.log("final qty " + this.cart.discount);
   
-  console.log("Total Amount is : "+ this.totalAmt);
-  console.log(this.cartitem);
+    // this.cartitem = [];
+    // this.hello();
 
-  var dis = this.dicountCatculator(100,10,11);
-  console.log(typeof(dis));
-  console.log();
-  var iqty;
-  var pprice;
-  var dist;
-  for(var i =0 ; i<this.cartitem.length; i++){
-   // console.log(this.cartitem[i].CID);
-    iqty = this.cartitem[i].IQuanitity ;
-    pprice = this.cartitem[i].PSP;
-    dist = this.cartitem[i].Disount;
-   this.totalAmt =  this.dicountCatculator(dist,pprice,iqty);
+    for (let i = 0; i < this.cartitem.length; i++) {
+      
+      if(this.cartitem[i].CID == id){
+        this.cartitem[i].Disount = this.disct;
+      }
+    }
+
+    //  this.hellodemo()
   }
 
+  hellodemo() {
+    this.totalAmounts()
+  }
+
+
+  totals(Discount: number | any, SPrice: number | any, Qtys: number | any) {
+    let totalprice = SPrice * Qtys;
+
+    if (Discount == 0) {
+      return SPrice * Qtys;
+    }
+    else {
+      let d = totalprice * (Discount / 100);
+      let totalamount = totalprice - d;
+      console.log(totalprice);
+      console.log(d);
+
+      console.log(totalamount);
+      return totalamount;
+    }
+
+
+
+  }
+
+
+  totalAmt: number | undefined;
+  totalAmounts() {
   
-  
-  console.log(this.totalAmt);
-  
+    this.totalAmt = 0;
+    // for(let t =0; t<this.carts.length; t++){
+    //   this.totalAmt= this.totalAmt+this.carts[t].itemsQuantity;
+    // }
 
- }
+    console.log("Total Amount is : " , this.totalAmt);
+    console.log(this.cartitem);
+
+    // let dis = this.dicountCatculator(100,10,11);
+    // console.log(typeof(dis));
+    
+    let iqty;
+    let pprice;
+    let dist;
+    // debugger;
+    for (let i = 0; i < this.cartitem.length; i++) {
+      // console.log(this.cartitem[i].CID);
+      iqty = this.cartitem[i].IQuanitity;
+      pprice = this.cartitem[i].PSP;
+      dist = this.cartitem[i].Disount;
+      this.totalAmt += this.totals(dist, pprice, iqty);
+    }
 
 
+    sessionStorage.setItem("Total_Amount",String(this.totalAmt));
+    sessionStorage.setItem("cartitem", JSON.stringify(this.cartitem));
+    console.log(this.totalAmt);
 
-}
+
+  }
+
+  sendToCustomer(){
+    this.totalAmounts();
+    this.router.navigate(['customer']);
+  }
+} 

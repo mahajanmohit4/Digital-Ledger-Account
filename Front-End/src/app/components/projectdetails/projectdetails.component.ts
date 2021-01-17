@@ -105,7 +105,7 @@ export class ProjectdetailsComponent implements OnInit {
         
         this.cart.cartDate = todayDate;
         this.cart.itemsQuantity = this.acptQunatity;
-        this.cart.id =1;
+        this.cart.id =7;
         this.cart.productId = pid;
         this.cart.discount = 0;
         this.cart.totalAmount = this.products[i].productSellingPrice *  this.acptQunatity;

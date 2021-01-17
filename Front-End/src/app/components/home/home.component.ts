@@ -34,4 +34,8 @@ export class HomeComponent implements OnInit {
     console.log(this.demos);
     
   }
+
+
+//  static total: number = 0;
+
 }

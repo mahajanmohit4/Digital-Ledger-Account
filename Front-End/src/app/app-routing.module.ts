@@ -12,6 +12,7 @@ import { UpdateproductComponent } from './components/updateproduct/updateproduct
 import { UpdatecategoryComponent } from './components/updatecategory/updatecategory.component';
 import { ProjectdetailsComponent } from './components/projectdetails/projectdetails.component';
 import { CartComponent } from './components/cart/cart.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 
 const routes: Routes = [
@@ -47,6 +48,9 @@ const routes: Routes = [
 },
 {
   path:"cart", component:CartComponent, pathMatch:"full", canActivate:[AuthGuard]
+},
+{
+  path:"customer", component:CustomerComponent, pathMatch:"full", canActivate:[AuthGuard]
 }
 
 ];

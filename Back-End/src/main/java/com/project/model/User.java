@@ -1,9 +1,15 @@
 package com.project.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -21,10 +27,51 @@ public class User {
     private String shopName;
     private String rol;
 
+    @OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn( name = "id", referencedColumnName = "id")
+	List<Category> Categorys = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn( name = "id", referencedColumnName = "id")
+	List<Cart> Carts = new ArrayList<>();
+    
+    @OneToMany(cascade = CascadeType.ALL)
+   	@JoinColumn( name = "id", referencedColumnName = "id")
+   	List<Customer> cutomers = new ArrayList<>();
+
+    
+    public List<Cart> getCarts() {
+		return Carts;
+	}
 
 
-    public User() {
+	public void setCarts(List<Cart> carts) {
+		Carts = carts;
+	}
+
+
+	public List<Customer> getCutomers() {
+		return cutomers;
+	}
+
+
+	public void setCutomers(List<Customer> cutomers) {
+		this.cutomers = cutomers;
+	}
+
+
+	public User() {
     }
+ 
+
+	public List<Category> getCategorys() {
+		return Categorys;
+	}
+
+
+	public void setCategorys(List<Category> categorys) {
+		Categorys = categorys;
+	}
 
 
 	public User(int id, String username, String password, String email, String phoneNo, String address, String shopName,

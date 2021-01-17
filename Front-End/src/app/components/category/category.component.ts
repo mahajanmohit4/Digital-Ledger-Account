@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { Category } from 'src/app/classes/category';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
+import { UserinfoService } from 'src/app/services/userinfo.service';
+import { Userinfo } from 'src/app/userinfo';
 
 
 @Component({
@@ -14,18 +16,28 @@ export class CategoryComponent implements OnInit {
 
   category: Category = new Category();
   categorys: Category[] | undefined;
-
+  userInfos : Userinfo[] | any;
   constructor(private categoryService: CategoryService,
     private route: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private userInfoService: UserinfoService
+    ) { }
   
   ngOnInit(): void {
     this.getCategorys();
+    this.getUser();
   }
   logout(){
     
     this.loginService.logout();
     this.route.navigate(['login']);
+  }
+  private getUser(){
+    this.userInfoService.getUser().subscribe(data => {
+      this.userInfos = data;
+      console.log(data);
+      
+    })
   }
   private getCategorys(){
     this.categoryService.getAllCategory().subscribe(data =>{
@@ -37,6 +49,7 @@ export class CategoryComponent implements OnInit {
   
   saveCategory(){
     this.category.id = 1;
+  
     this.categoryService.createCategory(this.category).subscribe(data => {
       console.log(data);
       window.alert("Category Added Sucessfully");

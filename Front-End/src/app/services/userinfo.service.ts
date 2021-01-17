@@ -13,4 +13,7 @@ export class UserinfoService {
   createUser(userinfo : Userinfo) : Observable<object>{
     return this.httpClient.post(`${this.bUrl}`,userinfo);
   }
+  getUser(): Observable<Userinfo[]>{
+    return this.httpClient.get<Userinfo[]>(`${this.bUrl}`);
+  }
 }

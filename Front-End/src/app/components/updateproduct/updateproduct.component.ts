@@ -44,7 +44,7 @@ export class UpdateproductComponent implements OnInit {
     this.categoryService.getAllCategory().subscribe(data =>{
       this.categorys = data;
       console.log(data);
-      
+       
     });
   }
 
@@ -59,6 +59,16 @@ export class UpdateproductComponent implements OnInit {
 
   goToProductList(){
     this.router.navigate(['/productlist']);
+  }
+  selected:number = 0;
+  public onOptionsSelected(event:any){
+    
+    const value = event.target.value;
+    this.selected = value;
+    this.product.categoryId = this.selected;
+    console.log(value, this.product.categoryId);
+    console.log(this.product);
+    
   }
 
 }

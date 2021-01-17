@@ -59,6 +59,17 @@ public class CartController {
 				.orElseThrow(() -> new ResourceNotFoundException("Cart is not exist with id : "+id));
 			
 		cart.setItemsQuantity(cartDetails.getItemsQuantity());
+		
+
+		Cart updateCart = cartRepository.save(cart);
+		return ResponseEntity.ok(updateCart);
+	}
+	
+	@PutMapping("/cartdisount/{id}")
+	public ResponseEntity<Cart> updateCart1(@PathVariable Integer id, @RequestBody Cart cartDetails){
+		Cart cart = cartRepository.findById(id)
+				.orElseThrow(() -> new ResourceNotFoundException("Cart is not exist with id : "+id));
+			
 		cart.setDiscount(cartDetails.getDiscount());
 
 		Cart updateCart = cartRepository.save(cart);
