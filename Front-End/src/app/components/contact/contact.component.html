@@ -1,0 +1,139 @@
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <div class="container ">
+        <a href="" class="navbar-brand text-info font-weight-bold">Digital Ledger Account</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a routerLink="" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/about/" class="nav-link text-white">About</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact/" class="nav-link text-white">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/registration/" class="nav-link text-white">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</nav>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div id="contact" class="contact-area">
+<div class="contact-inner area-padding">
+<div class="contact-overly"></div>
+<div class="container ">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="section-headline text-center">
+        <h2>Contact us</h2>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <!-- Start contact icon column -->
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="contact-icon text-center">
+        <div class="single-icon">
+          <i class="fa fa-mobile"></i>
+          <p>
+            Call: +91 1234 5678 99<br>
+            <span>Monday-Friday (9am-5pm)</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Start contact icon column -->
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="contact-icon text-center">
+        <div class="single-icon">
+          <i class="fa fa-envelope-o"></i>
+          <p>
+            Email: info@digitalledger.com<br>
+            <span>Web: www.digitalledgeraccount.com</span>
+          </p>
+        </div>
+      </div>
+    </div>
+    <!-- Start contact icon column -->
+    <div class="col-md-4 col-sm-4 col-xs-12">
+      <div class="contact-icon text-center">
+        <div class="single-icon">
+          <i class="fa fa-map-marker"></i>
+          <p>
+            9, 10th Gulmohar Cross Rd,<br>
+            Gulmohar Road,Juhu,Mumbai, <br>
+            Maharashtra 400049
+           
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+
+    <!-- Start Google Map -->
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <!-- Start Map -->
+      <iframe src="https://maps.google.com/maps?q=cdac%20juhu&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="380" frameborder="0" style="border:0" allowfullscreen></iframe>
+      <!-- End Map -->
+    </div>
+    <!-- End Google Map -->
+
+    <!-- Start  contact -->
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <div class="form contact-form">
+        <form (ngSubmit)="onSubmit()" role="form" class="php-email-form">
+          <div class="form-group">
+            <input [(ngModel)] = "contact.contactName" type="text" name="name" class="form-control" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)] = "contact.contactEmail" type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <input [(ngModel)] = "contact.contactSubject" type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+            <div class="validate"></div>
+          </div>
+          <div class="form-group">
+            <textarea [(ngModel)] = "contact.contactMassage" class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+            <div class="validate"></div>
+          </div>
+         <!--  <div class="mb-3">
+            <div class="loading">Loading</div>
+            <div class="error-message"></div>
+            <div class="sent-message">Your message has been sent. Thank you!</div>
+          </div> -->
+          <div class="text-center "><button class="btn btn-info text-white btn-lg" type="submit">Send Message</button></div>
+        </form>
+      </div>
+    </div>
+    <!-- End Left contact -->
+  </div>
+</div>
+</div>
+</div><!-- End Contact Section -->
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+ <!-- footer -->
+<app-footer></app-footer>
+<!-- end of footer -->

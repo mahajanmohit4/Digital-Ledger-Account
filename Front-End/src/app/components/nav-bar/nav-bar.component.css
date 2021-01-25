@@ -1,0 +1,165 @@
+/* You can add global styles to this file, and also import other style files */
+
+.bgimg{
+    /* background-image: url(../img/body.jpg); */
+    background-image: url(../../../assets/body.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	width: 100%;
+	height: 550px;
+}
+
+.headerset{
+	padding-top: 170px;
+	box-sizing: border-box;
+}
+.headerset h2{
+	font-size: 40px;
+}
+
+.headerset h1{
+	font-size: 60px;
+	font-weight: bold;
+}
+
+.ourservices{
+	padding: 100px 0px 60px;
+	height:  700px;
+
+}
+.ourservices1{
+	padding: 50px 0px 60px;
+	height:  300px;
+
+}
+
+.ourservices h1{
+	font-size: 50px;
+	font-weight: bold;
+}
+.ourservices1 h1{
+	font-size: 50px;
+	font-weight: bold;
+}
+
+
+.rowsetting{
+	margin:80px 0px;
+}
+
+.imgsetting{
+	border-radius: 50%;
+	height: 100px;
+	width: 100px;
+}
+
+.fa-shopping-cart{
+	margin-top: 22px;
+}
+.fa-lock{
+	margin-top: 24px;
+}
+.fa-envelope{
+	margin-top: 22px;
+}
+.rowsetting h2{
+	margin-top: 20px;
+	font-weight: bold;
+}
+
+.rowsetting p{
+	padding: 10px;
+	color: #6c757d!important;
+}
+
+
+.about-area {
+  background-color: #f9f9f9;
+}
+
+.single-well > a {
+  display: block;
+}
+
+.single-well ul li {
+  color: #444;
+  display: block;
+  padding: 5px 0;
+}
+
+.single-well ul li i {
+  color: #3EC1D5;
+  padding-right: 10px;
+  font-size: 12px;
+}
+
+.single-well p {
+  color: #444;
+}
+.nivo-caption::after {
+  background: #444 none repeat scroll 0 0;
+  content: "";
+  height: 100%;
+  left: 0;
+  opacity: 0.5;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: -1;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+.footer1{
+	margin-top: 50px;
+}
+@media(min-width: 992px){
+
+}
+@media(min-width: 768px) and (max-width: 991px){
+	.headerset h2{
+	font-size: 52px;
+}
+
+.headerset h1{
+	font-size: 75px;
+	font-weight: bold;
+}
+
+}
+@media(min-width: 575px) and (max-width: 767px){
+	.ourservices{
+	
+	height:  1600px;
+
+}
+
+}
+@media(min-width: 480px) and (max-width: 574px){
+
+}
+@media(max-width: 479px){
+	.bgimg{
+	background-image: url(../../../assets/body.jpg);
+	background-size: 100% 100%;
+	background-attachment: fixed;
+	width: 100%;
+	height: 550px;
+}
+.headerset h2{
+	font-size: 45px;
+}
+
+.headerset h1{
+	font-size: 65px;
+	font-weight: bold;
+}
+.ourservices{
+	
+	height:  1200px;
+
+}
+}
+

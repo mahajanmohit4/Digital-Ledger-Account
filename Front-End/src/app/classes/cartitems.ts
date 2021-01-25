@@ -13,7 +13,7 @@ export class Cartitems {
     ID: number | undefined;
 
 
-    constructor(cid:number, pid:number, pname:string, pdisc:string, pquantity:number, pcp:number,  psp:number ,iquanitity:number, disount: number){
+    constructor(cid:number, pid:number, pname:string, pdisc:string, pquantity:number, pcp:number,  psp:number ,iquanitity:number, disount: number, idd:number){
         this.CID = cid;
         this.PID = pid;
         this.PName = pname;
@@ -23,5 +23,7 @@ export class Cartitems {
         this.PSP = psp;
         this.IQuanitity = iquanitity;
         this.Disount = disount;
+        this.ID = idd;
     }
 }
+ 

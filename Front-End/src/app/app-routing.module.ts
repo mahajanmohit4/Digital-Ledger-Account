@@ -13,6 +13,14 @@ import { UpdatecategoryComponent } from './components/updatecategory/updatecateg
 import { ProjectdetailsComponent } from './components/projectdetails/projectdetails.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
+import { BillComponent } from './components/bill/bill.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CategorylistComponent } from './components/categorylist/categorylist.component';
+import { ErrorComponent } from './components/error/error.component';
 
 
 const routes: Routes = [
@@ -51,7 +59,32 @@ const routes: Routes = [
 },
 {
   path:"customer", component:CustomerComponent, pathMatch:"full", canActivate:[AuthGuard]
+},
+{
+  path:"reminder", component:ReminderComponent, pathMatch:"full", canActivate:[AuthGuard]
+},
+{
+  path:"bill", component:BillComponent, pathMatch:"full", canActivate:[AuthGuard]
+},
+{
+  path:"forgetpass", component:ForgetpasswordComponent, pathMatch:"full"
+},
+{
+  path:"about", component:AboutComponent, pathMatch:"full"
+},
+{
+  path:"contact", component:ContactComponent, pathMatch:"full"
+},
+{
+  path:"footer", component:FooterComponent, pathMatch:"full"
+},
+{
+  path:"categorylist", component:CategorylistComponent, pathMatch:"full", canActivate:[AuthGuard]
+},
+{
+  path:"**", component:ErrorComponent
 }
+
 
 ];
 

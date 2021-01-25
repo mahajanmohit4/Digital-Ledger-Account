@@ -18,7 +18,32 @@
 </form> -->
 
 
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+  <div class="container ">
+    <a href="" class="navbar-brand text-info font-weight-bold">Digital Ledger Account</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+      <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a routerLink="" class="nav-link text-white">Home</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/about/" class="nav-link text-white">About</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/contact/" class="nav-link text-white">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a routerLink="/registration/" class="nav-link text-white">Sign Up</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</nav>
 
 
 <div class="container-fluid">
@@ -29,72 +54,35 @@
       <div class="col-lg-8 col-md-12 col-sm-9 col-xs-12 form-box text-center">
 
         <div class="heading mb-4">
-          <h4>Login into your account</h4>
+          <h4 style="color: white;">Login into your account</h4>
         </div>
-        <!-- <form (ngSubmit)="onSubmit()">
-          <div class="form-input">
-            <span><i class="fa fa-user"></i></span>
-            <input type="text" placeholder="username Address" id="username"
-            [(ngModel)]="credentials.username" name="username" required>
-          </div>
-          <div class="form-input">
-            <span><i class="fa fa-lock"></i></span>
-            <input type="password" placeholder="Password" id="password"
-            [(ngModel)]="credentials.password" type="password" required>
-          </div>
-          <div class="row mb-3">
-            <div class="col-6 d-flex">
-              <div class="custom-control custom-checkbox">
-                <input type="checkbox" class="custom-control-input" id="cb1">
-                <label class="custom-control-label text-white" for="cb1">Remember me</label>
-              </div>
-            </div>
-            <div class="col-6 text-right">
-              <a href="forget" class="forget-link">Forget Password</a>
-            </div>
-          </div>
-          <div class="text-left mb-3">
-            <button type="submit" class="btn">Login</button>
-          </div>
-          <div class="text-center mb-2">
-            <div class="mb-3" style="color: #777">or login with</div>
 
-            <a href="" class="btn btn-social btn-facebook">fb</a>
-
-            <a href="" class="btn btn-social btn-google">g</a>
-
-            <a href="" class="btn btn-social btn-twitter">t</a>
-          </div>
-          <div style="color: rgb(6, 130, 231)">Don't have an account
-            <a routerLink="/register" class="register-link">Register here</a>
-          </div>
-        </form> -->
         <form (ngSubmit)="onSubmit()">
           <div class="form-input">
             <span><i class="far fa-envelope"></i></span>
-            
-              <input type="text" placeholder="User Name" id="username" [(ngModel)]="credentials.username"
-              name="username" required>
+
+            <input type="text" placeholder="User Name" id="username" [(ngModel)]="credentials.username" name="username"
+              required>
           </div>
           <div class="form-input">
             <span><i class="fa fa-lock"></i></span>
-           
-              <input type="password" placeholder="Password" id="password" [(ngModel)]="credentials.password"
+
+            <input type="password" placeholder="Password" id="password" [(ngModel)]="credentials.password"
               name="password" required>
           </div>
 
           <div class="row mb-3">
             <div class="col-12 d-flex">
-                <div class="custom-control custom-checkbox">
-                    <input type="checkbox" class="custom-control-input" id="cb1">
-                    <label class="custom-control-label text-white" for="cb1">I agree all terms &
-                        conditions</label>
-                </div>
+              <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="cb1">
+                <label class="custom-control-label text-white" for="cb1">I agree all terms &
+                  conditions</label>
+              </div>
             </div>
-        </div>
+          </div>
           <button type="submit" class="btn btn-primary">Submit</button>
 
-         
+
         </form>
         <div class="text-center mb-2">
           <div class="mb-3" style="color: #777">or register with</div>
@@ -104,8 +92,15 @@
           <a href="" class="btn btn-social btn-google">g</a>
 
           <a href="" class="btn btn-social btn-twitter">t</a>
-      </div>
+        </div>
+        <div style="color: rgb(6, 130, 231)" style="color: yellow;">Forget password 
+          <a (click)="forgetpass()" class="register-link">Click here</a>
+        </div>
       </div>
     </div>
+   
   </div>
 </div>
+
+
+<app-footer></app-footer>

@@ -1,9 +1,6 @@
 
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { promise } from 'protractor';
-
-
 
 import { Cart } from 'src/app/classes/cart';
 import { Cartitems } from 'src/app/classes/cartitems';
@@ -23,6 +20,7 @@ export class CartComponent implements OnInit {
   cartitems1: Cartitems[] | any;
 
   cartitem: Cartitems[] = [];
+  Curruntcartitem: Cartitems[] = [];
 
   cart: Cart = new Cart();
 
@@ -62,9 +60,9 @@ export class CartComponent implements OnInit {
   update2(value2: string) {
     this.value1 = value2;
     this.disct = +value2;
-    console.log("item qty : " + this.disct);
-    console.log("type of final : " + typeof (this.disct));
-    console.log(value2);
+   // console.log("item qty : " + this.disct);
+   // console.log("type of final : " + typeof (this.disct));
+   // console.log(value2);
 
   }
 
@@ -72,7 +70,7 @@ export class CartComponent implements OnInit {
   private getCarts() {
     this.cartService.getCartList().subscribe(data => {
       this.carts = data;
-      console.log(this.carts);
+      //console.log(this.carts);
 
     })
   }
@@ -81,7 +79,7 @@ export class CartComponent implements OnInit {
     this.productService.getProductList().subscribe(data => {
       this.products = data;
       this.demoX = data;
-       console.log(data);
+     //  console.log(data);
       this.demo();
       // this.hello();
     })
@@ -90,38 +88,43 @@ export class CartComponent implements OnInit {
 
   demo() {
     this.hello()
-    console.log(this.cartitem);
-    console.log(this.cartitem.length);
+    //console.log(this.cartitem);
+    //console.log(this.cartitem.length);
 
-    for (let i = 0; i < this.cartitem.length; i++) {
-      console.log(this.cartitem[i].CID);
+    // for (let i = 0; i < this.cartitem.length; i++) {
+    //   console.log(this.cartitem[i].CID);
 
-    }
+    // }
   }
   hello() {
 
-    console.log("Hello");
-    console.log(this.carts);
-    console.log(this.products);
-    console.log(this.products.length);
+    //console.log("Hello");
+   // console.log(this.carts);
+    //console.log(this.products);
+   // console.log(this.products.length);
 
-    // let x = JSON.parse(this.carts);
-    //  console.log(this.cartitems1.length);
-    console.log(this.cartitem,"old ");
+    //console.log(this.cartitem,"old ");
+    let idd = Number(localStorage.getItem("user_id")) ;
     for (let j = 0; j < this.carts.length; j++) {
 
       for (let i = 0; i < this.products.length; i++) {
         if (this.carts[j].productId == this.products[i].productId) {
-          this.cartitem.push(new Cartitems(this.carts[j].cartId, this.products[i].productId, this.products[i].productName, this.products[i].productDescription, this.products[i].productQuantity, this.products[i].productCostPrice, this.products[i].productSellingPrice, this.carts[j].itemsQuantity, this.carts[j].discount))
-          //console.log(this.carts[j].cartId);
-          //console.log(this.products[i].productSellingPrice);               
+          this.cartitem.push(new Cartitems(this.carts[j].cartId, this.products[i].productId, this.products[i].productName, this.products[i].productDescription, this.products[i].productQuantity, this.products[i].productCostPrice, this.products[i].productSellingPrice, this.carts[j].itemsQuantity, this.carts[j].discount, idd))
+                        
         }
       }
 
     }
 
-    console.log(this.cartitem, "new ");
+    //console.log(this.cartitem, "new ");
     
+    for(let c=0; c<this.cartitem.length; c++){
+      if(this.cartitem[c].ID === idd){
+        this.Curruntcartitem.push(this.cartitem[c]);
+      }
+    }
+    //this.cartitem = this.Curruntcartitem;
+//console.log("cuurent ;", this.Curruntcartitem, "id  : ",idd);
 
 
 
@@ -130,19 +133,20 @@ export class CartComponent implements OnInit {
 
   deleteProduct(id: number | undefined) {
     this.cartService.deleteCart(id).subscribe(data => {
-      console.log(data);
+    //  console.log(data);
       this.cartitem = [];
+      this.Curruntcartitem = [];
       this.ngOnInit()
 
     })
   }
 
   updateItemQuantity(id: number | undefined) {
-    console.log("item quantity updated !!");
+   // console.log("item quantity updated !!");
     this.cart.cartId = id;
     this.cart.itemsQuantity = Number(this.itmqty);
-    console.log("final qty " + this.cart.itemsQuantity);
-    console.log("type of : " + typeof (this.itmqty));
+   // console.log("final qty " + this.cart.itemsQuantity);
+   // console.log("type of : " + typeof (this.itmqty));
     //this.cart.discount = 11;
     this.cartService.updateCart(id, this.cart).subscribe(data => {
       console.log(data);
@@ -152,6 +156,7 @@ export class CartComponent implements OnInit {
     // this.cartitem = [];
     // this.hello();
 
+    this.Curruntcartitem = [];
     for (let i = 0; i < this.cartitem.length; i++) {
       
       if(this.cartitem[i].CID == id){
@@ -164,24 +169,24 @@ export class CartComponent implements OnInit {
 
   
   updateDiscount(id: number | undefined) {
-    //debugger;
-    console.log("item discount updated !!");
+   
+    //console.log("item discount updated !!");
     this.cart.cartId = id;
-    console.log("type of : " + typeof (this.disct));
-    //this.cart.discount = 11;
+    //console.log("type of : " + typeof (this.disct));
+   
     this.cart.discount = Number(this.disct);
 
-   // debugger
+   
     const promiseA = new Promise( (rosolve,reject) => {
       
       this.cartService.updateDiscount(id, this.cart).subscribe(data => {
-        console.log(data);
+        //console.log(data);
         rosolve(data);
       }, error => console.log(error))
     });
     
     promiseA.then( data => {
-      console.log(data);
+     // console.log(data);
       
     })
     console.log("final qty " + this.cart.discount);
@@ -213,16 +218,16 @@ export class CartComponent implements OnInit {
     else {
       let d = totalprice * (Discount / 100);
       let totalamount = totalprice - d;
-      console.log(totalprice);
-      console.log(d);
+      //console.log(totalprice);
+      //console.log(d);
 
-      console.log(totalamount);
+      //console.log(totalamount);
       return totalamount;
     }
 
 
 
-  }
+  } 
 
 
   totalAmt: number | undefined;
@@ -233,8 +238,8 @@ export class CartComponent implements OnInit {
     //   this.totalAmt= this.totalAmt+this.carts[t].itemsQuantity;
     // }
 
-    console.log("Total Amount is : " , this.totalAmt);
-    console.log(this.cartitem);
+   // console.log("Total Amount is : " , this.totalAmt);
+    //console.log(this.cartitem);
 
     // let dis = this.dicountCatculator(100,10,11);
     // console.log(typeof(dis));
@@ -254,7 +259,7 @@ export class CartComponent implements OnInit {
 
     sessionStorage.setItem("Total_Amount",String(this.totalAmt));
     sessionStorage.setItem("cartitem", JSON.stringify(this.cartitem));
-    console.log(this.totalAmt);
+    //console.log(this.totalAmt);
 
 
   }

@@ -1,51 +1,76 @@
-<p>updatecategory works!</p>
- 
 <app-nav-bar></app-nav-bar>
 
-<div class="col-md-6 offset-md-3">
-    <h3> Update Category </h3>
-    <form (ngSubmit) = "onSubmit()">
-    
-        <div class="form-group">
-            <label> Category Name</label>
-            <input type="text" class ="form-control" id = "categoryName"
-                [(ngModel)] = "category.categoryName" name = "categoryName">
-        </div>
-    
-        
-        
-        <button class = "btn btn-success" type ="submit">Update</button>
-    
-    </form>
-</div> 
-
-
-
+<br><br><br>
 
 <div class="container">
+    <div class="row">
+        <aside class="col-lg-5">
+            <div class="card">
 
-    <h2> Category List</h2>
-    <table class = "table table-striped">
-        <thead>
-            <tr>
-                <th> Category Id</th>
-                <th> Category Name </th>
-                
-            </tr>
-        </thead>
-        <tbody>
-            <tr *ngFor = "let category of categorys" >
-                <td> {{ category.categoryId }} </td>
-                <td> {{ category.categoryName }} </td>
-                
-                <td>
-                    <!-- <button (click) = "updateCategory(category.categoryId)" class = "btn btn-info"> Update</button> -->
-                    <button (click) = "deleteCategory(category.categoryId)" class = "btn btn-danger" style="margin-left: 10px"> Delete</button>
-                   
-                </td>
-            </tr>
-        </tbody>
-    </table>
+                <section class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Update Category</h3>
+                        <hr><br>
+            
+                    </div>
+                    <div class="col-md-9 offset-md-1"> 
+                        <h5> Update Category </h5>
+                        <form (ngSubmit)="onSubmit()">
+                            <br>
+                            <div class="form-group">
+                                <label> Category Name</label>
+                                <input type="text" class="form-control" id="categoryName" [(ngModel)]="category.categoryName"
+                                    name="categoryName">
+                            </div>
+                    
+                    
+                    
+                            <button class="btn btn-success" type="submit">Submit</button>
+                    
+                        </form>
+                    </div>
+                    </section>
 
+                <!-- <div class="col-md-9 offset-md-1">
+                    <h5> Update Category </h5>
+                    <hr><br>
+                    <form (ngSubmit) = "onSubmit()">
+                    
+                        <div class="form-group">
+                            <label> Category Name</label>
+                            <input type="text" class ="form-control" id = "categoryName"
+                                [(ngModel)] = "category.categoryName" name = "categoryName">
+                        </div>
+                    
+                        
+                        
+                        <button class = "btn btn-success" type ="submit">Update</button>
+                    
+                    </form>
+                </div>  -->
+            </div>
+        </aside>
+        <aside class="col-lg-7">
+            <div class="card">
+                <app-categorylist></app-categorylist>
+            </div>
+        </aside>
+    </div>
 </div>
+
+<br><br><br><br><br><br><br>
+<br><br><br><br><br>
+<app-footer></app-footer>
+
+
+
+
+
+
+
+
+
+
+
+
 

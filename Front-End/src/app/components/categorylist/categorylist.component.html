@@ -1,0 +1,30 @@
+
+ 
+<h3> Category List</h3>
+<hr><br>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th> Category Id</th>
+            <th> Category Name </th>
+            <th> Update </th>
+            <th> Delete </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let category of cat">
+            <td> {{ category.categoryId }} </td>
+            <td> {{ category.categoryName }} </td>
+
+            <td>
+                <button (click)="updateCategory(category.categoryId)" class="btn btn-info"> Update</button>
+                
+
+            </td>
+            <td>
+                <button (click)="deleteCategory(category.categoryId)" class="btn btn-danger" style="margin-left: 10px">
+                    Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

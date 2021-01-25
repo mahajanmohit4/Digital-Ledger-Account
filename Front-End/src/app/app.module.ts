@@ -21,6 +21,15 @@ import { UpdatecategoryComponent } from './components/updatecategory/updatecateg
 import { ProjectdetailsComponent } from './components/projectdetails/projectdetails.component';
 import { CartComponent } from './components/cart/cart.component';
 import { CustomerComponent } from './components/customer/customer.component';
+import { ReminderComponent } from './components/reminder/reminder.component';
+import { BillComponent } from './components/bill/bill.component';
+import { ForgetpasswordComponent } from './components/forgetpassword/forgetpassword.component';
+import { AboutComponent } from './components/about/about.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { CategorylistComponent } from './components/categorylist/categorylist.component';
+import { ErrorComponent } from './components/error/error.component';
+
 
 
  
@@ -43,6 +52,14 @@ import { CustomerComponent } from './components/customer/customer.component';
     ProjectdetailsComponent,
     CartComponent,
     CustomerComponent,
+    ReminderComponent,
+    BillComponent,
+    ForgetpasswordComponent,
+    AboutComponent,
+    ContactComponent,
+    FooterComponent,
+    CategorylistComponent,
+    ErrorComponent
   
     
     
@@ -59,3 +76,4 @@ import { CustomerComponent } from './components/customer/customer.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+                                                     

@@ -5,6 +5,8 @@ import { Product } from 'src/app/classes/product';
 import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
+import { UserinfoService } from 'src/app/services/userinfo.service';
+import { Userinfo } from 'src/app/userinfo';
 
 @Component({
   selector: 'app-updateproduct',
@@ -19,14 +21,19 @@ export class UpdateproductComponent implements OnInit {
 
   category: Category = new Category();
   categorys: Category[] | undefined;
+
+  cat: Category[] = [];
+  userInfos : Userinfo[] | any;
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
     private categoryService: CategoryService,
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private userInfoService: UserinfoService) { }
 
   ngOnInit(): void {
     this.getCategorys();
+    this.getUser();
     this.id = this.route.snapshot.params['id'];
     this.productService.getProductById(this.id).subscribe(data =>{
       console.log(data);
@@ -35,11 +42,7 @@ export class UpdateproductComponent implements OnInit {
       error => console.log(error)   
     );
   }
-  logout(){
-    
-    this.loginService.logout();
-    this.router.navigate(['login']);
-  }
+  
   private getCategorys(){
     this.categoryService.getAllCategory().subscribe(data =>{
       this.categorys = data;
@@ -47,12 +50,28 @@ export class UpdateproductComponent implements OnInit {
        
     });
   }
-
+  private getUser(){
+    this.userInfoService.getUser().subscribe(data => {
+      this.userInfos = data;
+      console.log(data);
+      console.log(this.userInfos.length);
+      this.getCatByAID()
+    })
+  }
+  getCatByAID(){
+    for(let i =0; i<this.userInfos.length ; i++){
+      let idd = localStorage.getItem("user_id");
+      if(this.userInfos[i].id == idd){
+        console.log(this.userInfos[i].categorys);
+        this.cat = this.userInfos[i].categorys;
+      }
+    } 
+  }
   onSubmit(){
     this.productService.updateProduct(this.id, this.product).subscribe( data =>{
       this.goToProductList();
       console.log(data);
-      
+      this.router.navigate(['addproduct'])
     },
     error => console.log(error)  );
   }

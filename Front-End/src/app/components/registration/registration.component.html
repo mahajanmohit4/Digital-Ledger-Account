@@ -54,9 +54,34 @@
 
 
 
+ <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <div class="container ">
+        <a href="" class="navbar-brand text-info font-weight-bold">Digital Ledger Account</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a routerLink="" class="nav-link text-white">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/about/" class="nav-link text-white">About</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/contact/" class="nav-link text-white">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/registration/" class="nav-link text-white">Sign Up</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+</nav>
 
-<div class="container-fluid">
+ <div class="container-fluid">
     <div class="row">
         <div class="col-lg-6 col-md-6 d-none d-md-block image-container"></div>
 
@@ -74,34 +99,34 @@
                     <div class="form-input">
                         <span><i class="fa fa-user"></i></span>
                         <input type="text" placeholder="User Name" id="username" [(ngModel)]="userinfo.username"
-                            name="username" required>
+                            name="username" (blur)="name()" required>
                     </div>
 
                     <div class="form-input">
                         <span><i class="far fa-envelope"></i></span>
                         <input type="email" placeholder="Email Address" id="email" [(ngModel)]="userinfo.email"
-                            name="email" required>
+                            name="email" (blur)="email()" required>
                     </div>
 
                     <div class="form-input">
                         <span><i class="fa fa-phone"></i></span>
                         <input type="text" placeholder="Phone Number" id="phoneNo" [(ngModel)]="userinfo.phoneNo"
-                            name="phoneNo" required>
+                            name="phoneNo" (blur)="phone()" required>
                     </div>
                     <div class="form-input">
                         <span><i class="fa fa-lock"></i></span>
                         <input type="password" placeholder="Password" id="password" [(ngModel)]="userinfo.password"
-                            name="password" required>
+                            name="password" (blur)="password()" required>
                     </div>
                     <div class="form-input">
                         <span><i class="fa fa-address-book"></i></span>
                         <input type="address" placeholder="Address" id="address" [(ngModel)]="userinfo.address"
-                            name="address" required>
+                            name="address" (blur)="address()" required>
                     </div>
                     <div class="form-input">
                         <span><i class="fas fa-store"></i></span>
                         <input type="text" placeholder="Shop Name" id="shopName" [(ngModel)]="userinfo.shopName"
-                            name="shopName">
+                            name="shopName" >
                     </div>
 
                     <!-- <div class="form-input">
@@ -139,3 +164,5 @@
         </div>
     </div>
 </div>
+
+<app-footer></app-footer>

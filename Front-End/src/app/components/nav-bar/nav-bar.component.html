@@ -1,4 +1,4 @@
-<div class="bs-example">
+<!-- <div class="bs-example">
     <nav class="navbar navbar-expand-md navbar-light bg-dark">
 
         <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
@@ -21,4 +21,36 @@
             </div>
         </div>
     </nav>
-</div>
+</div> -->
+
+
+<nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+    <div class="container ">
+        <a (click)="dashboard()" class="navbar-brand text-info font-weight-bold">Digital Ledger Account</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+            <ul class="navbar-nav ml-auto">
+                <!-- <li class="nav-item">
+                    <a routerLink="" class="nav-link text-white">Home</a>
+                </li> -->
+
+                <li class="nav-item">
+                    <a routerLink="/productdetails/" class="nav-link text-white">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/cart/" class="nav-link text-white"> Cart </a>
+                </li>
+                <li class="nav-item">
+                    <a routerLink="/reminder/" class="nav-link text-white"> Reminders </a>
+                </li>
+                <li class="nav-item">
+                    <a (click)="logout()" class="nav-link text-white">Sign Out</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</nav>

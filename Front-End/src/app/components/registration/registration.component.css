@@ -1,11 +1,12 @@
 .image-container{
-    background: url('https://i.etsystatic.com/13961451/r/il/713db8/2386546900/il_1588xN.2386546900_4jc9.jpg') center no-repeat; 
+    background: url('https://www.wallpapertip.com/wmimgs/68-682086_working-desk-with-blank-notepad-and-ready-to.jpg') center no-repeat; 
     background-size: cover;
     height: 100vh;
 }
 
 .form-container{
-    background-color: #a16920;
+    /*background-color: #a16920;*/
+    background-color: #67321f;
     display: flex;
     justify-content: center;
 }
@@ -127,4 +128,8 @@
 .form-box .btn-twitter:hover{
     background: #2eb7e5;
     color: #fff;
+}
+
+.heading h4{
+    color: black;
 }

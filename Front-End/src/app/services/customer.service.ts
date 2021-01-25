@@ -9,6 +9,8 @@ import { Customer } from '../classes/customer';
 export class CustomerService {
 
   private baserUrl = "http://localhost:8080/api/v1/customers";
+  private baseUrl1 = "http://localhost:8080/api/v1/customeremail";
+  private baseUrl2 = "http://localhost:8080/api/v1/reminderemail";
   constructor( private httpClient: HttpClient) { }
 
   getCusotmer(): Observable<Customer[]>{
@@ -16,6 +18,21 @@ export class CustomerService {
   }
 
   createCustomer(customer: Customer): Observable<object>{
-    return this.httpClient.put(`${this.baserUrl}`, customer);
+    return this.httpClient.post(`${this.baserUrl}`, customer);
+  }
+
+  getCustomerById(id: number | undefined): Observable<Customer>{
+    return this.httpClient.get<Customer>(`${this.baserUrl}/${id}`);
+  }
+
+  getCustomerUpdate(id: number | undefined, customer: Customer): Observable<object>{
+    return this.httpClient.put(`${this.baserUrl}/${id}`,customer);
+  }
+
+  sendBill(customer: Customer): Observable<object>{
+    return this.httpClient.post(`${this.baseUrl1}`, customer);
+  }
+  reminderMail(customer: Customer): Observable<object>{
+    return this.httpClient.post(`${this.baseUrl2}`, customer);
   }
 } 

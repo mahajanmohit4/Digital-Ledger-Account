@@ -1,6 +1,6 @@
-<p>home works!</p>
 
-<input #box
+
+<!-- <input #box
 (keyup.enter)="update(box.value)"
 (blur)="update(box.value)">
 
@@ -12,4 +12,84 @@ type="number"
 min="1" max="30"
 > 
 
-<p>{{value}}</p>
+<p>{{value}}</p> -->
+
+<!-- <img [src]="url" height="200"> <br/>
+    <input type='file' (change)="onSelectFile($event)">
+
+
+
+    <input type="file" (change)="showPreviewImage($event)">
+<img [src]="localUrl" *ngIf="localUrl" class="imgPlaceholder"> -->
+
+<!-- <input name="date" [(ngModel)]="today" type="date" (click) = "d()" required> -->
+
+
+<div class="bgimg ">
+
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark fixed-top">
+        <div class="container ">
+            <a href="" class="navbar-brand text-info font-weight-bold">Digital Ledger Account</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsenavbar">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse text-center" id="collapsenavbar">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a routerLink="" class="nav-link text-white">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/about/" class="nav-link text-white">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/contact/" class="nav-link text-white">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a routerLink="/registration/" class="nav-link text-white">Sign Up</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </nav>
+
+    <div class="container text-center text-black headerset">
+        <h2 style="color: black;">Welcome To</h2>
+        <h1 style="color: black;">Digital Ledger Account</h1>
+        <button (click)="goToLogin()" class="btn btn-info text-white btn-lg">Sign In</button>
+        
+    </div>
+
+</div>
+<section class="container ourservices text-center">
+        <h1>SERVICES</h1>
+        <p>For us customer services is about empathy </p>
+
+        <div class="row rowsetting">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-10 d-block m-auto">
+            <div class="imgsetting d-block m-auto bg-info"><i class="fa fa-shopping-cart fa-3x text-white" ></i>
+            </div>
+            <h2>Add Products</h2>
+            <p>You can add new products or Update products to your database any time.</p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-10 d-block m-auto">
+            <div class="imgsetting d-block m-auto bg-info"><i class="fa fa-envelope fa-3x text-white" ></i>
+            </div>
+            <h2>Sent Invoice via Mail</h2>
+            <p>Get notified via email on every successful transaction.</p>
+            </div>
+
+            <div class="col-lg-4 col-md-4 col-sm-4 col-10 d-block m-auto">
+            <div class="imgsetting d-block m-auto bg-info"><i class="fa fa-lock fa-3x text-white" ></i>
+            </div>
+            <h2>Security</h2>
+            <p> Your Security is our responsibility we provinding most secured and relible services </p>
+              
+        </div>
+        </div>
+    </section>
+
+    
+    <app-footer></app-footer>

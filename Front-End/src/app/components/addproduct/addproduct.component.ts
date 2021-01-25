@@ -6,6 +6,8 @@ import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import { UserinfoService } from 'src/app/services/userinfo.service';
+import { Userinfo } from 'src/app/userinfo';
 
 @Component({
   selector: 'app-addproduct',
@@ -19,32 +21,51 @@ export class AddproductComponent implements OnInit {
   category: Category = new Category();
   categorys: Category[] | undefined;
 
+  cat: Category[] = [];
+
+  userInfos : Userinfo[] | any;
+
+
   constructor(private productService: ProductService,
     private categoryService: CategoryService,
     private router: Router,
-    private loginService: LoginService) { }
+    private loginService: LoginService,
+    private userInfoService: UserinfoService) { }
 
   ngOnInit(): void {
     this.getCategorys();
+    this.getUser();
   }
-  logout(){
-    
-    this.loginService.logout();
-    this.router.navigate(['login']);
+ 
+  private getUser(){
+    this.userInfoService.getUser().subscribe(data => {
+      this.userInfos = data;
+      //console.log(data);
+      //console.log(this.userInfos.length);
+
+      for(let i =0; i<this.userInfos.length ; i++){
+        let idd = localStorage.getItem("user_id");
+        if(this.userInfos[i].id == idd){
+          console.log(this.userInfos[i].categorys);
+          this.cat = this.userInfos[i].categorys;
+        }
+      } 
+      
+    })
   }
   private getCategorys(){
     this.categoryService.getAllCategory().subscribe(data =>{
       this.categorys = data;
-      console.log(data);
+     // console.log(data);
       
     });
   }
   saveProduct(){
    // this.product.categoryId = 9;
     this.productService.createProduct(this.product).subscribe(data => {
-      console.log(data);
+     // console.log(data);
       window.alert("Product Added successfully !!");
-      this.router.navigate(['productlist']);
+      location.reload();
     },
     error => console.log(error));
   }
@@ -52,23 +73,17 @@ export class AddproductComponent implements OnInit {
     this.router.navigate(['/productlist']);
   }
 
-  onSubmit(){
-    //this.product.categoryId = this.category.categoryId;
-  //  this.product.categoryId = this.category.categoryId;
-  //  let cid = document.getElementById('categoryId');
-  //   console.log(cid);
-    
-  //  this.product.categoryId = Number(cid);
+  onSubmit(){  
 
-    console.log(this.product);
+  //  console.log(this.product);
     this.saveProduct();
     
   }
   categoryIdUpdated(cid:number | any){
    
     //this.product.categoryId = cid;
-    console.log("cid ",cid);
-    console.log("heloosadfh");
+  //  console.log("cid ",cid);
+  //  console.log("heloosadfh");
     
   }
   selected:number = 0;
@@ -77,8 +92,8 @@ export class AddproductComponent implements OnInit {
     const value = event.target.value;
     this.selected = value;
     this.product.categoryId = this.selected;
-    console.log(value, this.product.categoryId);
-    console.log(this.product);
+   // console.log(value, this.product.categoryId);
+   // console.log(this.product);
     
   }
 }

@@ -5,7 +5,7 @@ import { CategoryService } from 'src/app/services/category.service';
 import { LoginService } from 'src/app/services/login.service';
 import { UserinfoService } from 'src/app/services/userinfo.service';
 import { Userinfo } from 'src/app/userinfo';
-
+ 
 
 @Component({
   selector: 'app-category',
@@ -15,7 +15,11 @@ import { Userinfo } from 'src/app/userinfo';
 export class CategoryComponent implements OnInit {
 
   category: Category = new Category();
-  categorys: Category[] | undefined;
+  categorys: Category[] | any;
+
+  cat: Category[] = [];
+
+ 
   userInfos : Userinfo[] | any;
   constructor(private categoryService: CategoryService,
     private route: Router,
@@ -25,53 +29,40 @@ export class CategoryComponent implements OnInit {
   
   ngOnInit(): void {
     this.getCategorys();
-    this.getUser();
-  }
-  logout(){
     
-    this.loginService.logout();
-    this.route.navigate(['login']);
   }
-  private getUser(){
-    this.userInfoService.getUser().subscribe(data => {
-      this.userInfos = data;
-      console.log(data);
-      
-    })
-  }
+  
+
   private getCategorys(){
     this.categoryService.getAllCategory().subscribe(data =>{
       this.categorys = data;
-      console.log(data);
+      // console.log(data);
+      // console.log(this.categorys.length);
       
     });
   }
   
   saveCategory(){
-    this.category.id = 1;
+    let idd = localStorage.getItem("user_id");
+    this.category.id = Number(idd);
   
     this.categoryService.createCategory(this.category).subscribe(data => {
-      console.log(data);
+      //console.log(data);
       window.alert("Category Added Sucessfully");
+      location.reload();
+      this.ngOnInit()
       this.getCategorys();
     },
     error => console.log(error));
     
     
   }
-  deleteCategory(id: number | undefined){
-    this.categoryService.deleteCategory(id).subscribe( data => {
-      console.log(data);
-      this.getCategorys();      
-    });
-  }
-  updateCategory(id: number | undefined){
-    this.route.navigate(['updatecategory', id]);
-    console.log("update is left");
-    
-  }
+ 
   onSubmit(){
-    console.log(this.category);
+   // console.log(this.category);
     this.saveCategory();
   }
+
+
 }
+ 

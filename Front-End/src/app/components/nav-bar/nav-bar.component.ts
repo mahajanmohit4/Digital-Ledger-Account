@@ -18,7 +18,13 @@ export class NavBarComponent implements OnInit {
   logout(){
     
     this.loginService.logout();
+    localStorage.removeItem("user_name")
+    localStorage.removeItem("user_id")
+    localStorage.removeItem("token")
+    localStorage.removeItem("shop_name")
     this.router.navigate(['login']);
   }
-
+  dashboard(){
+    this.router.navigate(['dashboard']);
+  }
 }

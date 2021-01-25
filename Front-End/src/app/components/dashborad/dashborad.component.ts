@@ -14,10 +14,12 @@ export class DashboradComponent implements OnInit {
     private loginService:LoginService,
     private router: Router) { }
 
+    shopname: string | any;
   ngOnInit(): void {
+    this.shopname = localStorage.getItem("shop_name")
   }
   viewProducts(){
-    this.router.navigate(['productlist'])
+    this.router.navigate(['productdetails'])
   }
   addCategorys(){
     this.router.navigate(['category']);
@@ -26,16 +28,11 @@ export class DashboradComponent implements OnInit {
   addProducts(){
     this.router.navigate(['addproduct']);
   }
-  logout(){
-    console.log("logout user");
-    
-    localStorage.removeItem("token")
-   this.loginService.logout();
-  }
+  
   getUser(){
       this.userService.getUser().subscribe(
         user=>{
-          console.log(user);
+         // console.log(user);
           
         },
         error=>{

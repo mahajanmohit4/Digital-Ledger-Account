@@ -5,9 +5,11 @@ export class Customer {
     customerPhoneNo: number | undefined;
     customerAddress: string | undefined;
     purchaseDate: string | undefined;
-    itemsQuantity: number | undefined;
-    productId: number | undefined;
+    
+    
     id: number | undefined;
-    discount: number | undefined;
+    totalPrice: number | undefined;
+    paymentStatus: string | any;
+    reminderDate: string | undefined;
 
 }

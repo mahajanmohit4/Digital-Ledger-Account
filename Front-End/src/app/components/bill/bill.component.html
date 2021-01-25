@@ -1,0 +1,71 @@
+<app-nav-bar></app-nav-bar>
+<br><br><br><br>
+
+
+
+<div class="container">
+    <h3> BILL </h3>
+    <div>
+        <label> <b> Name : </b></label> {{customer.customerName}}
+    </div>
+    <div>
+        <label> <b> Email : </b></label> {{customer.customerEmail}}
+    </div>
+    <div>
+        <label> <b> Phone Number : </b></label> {{customer.customerPhoneNo}}
+    </div>
+    <div>
+        <label> <b> Address : </b></label> {{customer.customerAddress}}
+    </div>
+    <div>
+        <label> <b> Date : </b></label> {{customer.purchaseDate}}
+    </div>
+    <div>
+        <label> <b> Payment Status : </b></label> {{customer.paymentStatus}}
+    </div>
+
+    
+</div>
+
+
+
+
+
+
+<div class="container">
+    <h5> Products </h5>
+    <table class="table table-striped">
+        <thead class="thead-dark">
+            <tr>
+                <th> Product Name</th>
+                <th> Product Description </th>
+                <th> Product Quantity </th>
+                <th> Product Discount </th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let cartitems of cartItem">
+                <td> {{ cartitems.PName }} </td>
+                <td> {{ cartitems.PDisc }} </td>
+                <td> {{ cartitems.IQuanitity }} </td>
+                <td> {{ cartitems.Disount }} </td>
+                
+                
+            </tr>
+        </tbody>
+    </table>
+    
+    <div>
+        <label> <b> Total Price : </b></label> {{totalPrice}}
+    </div>
+
+    <br><br>
+    <button (click)="sendBillToEmail(customer.customerId)" class="btn btn-success" type="submit">Send Bill</button>
+
+</div>
+
+
+<br><br><br><br><br><br>
+<app-footer></app-footer> 
+

@@ -9,6 +9,7 @@ import { Product } from '../classes/product';
 export class ProductService {
 
   private baseUrl = "http://localhost:8080/api/v1/products";
+  private baseUrl1 = "http://localhost:8080/api/v1/products1";
   constructor(private httpClient: HttpClient) { }
 
   getProductList(): Observable<Product[]>{
@@ -22,6 +23,10 @@ export class ProductService {
   updateProduct(id: number | undefined, product: Product): Observable<object>{
     return this.httpClient.put(`${this.baseUrl}/${id}`, product);
   }
+  updateProduct1(id: number | undefined, product: Product): Observable<object>{
+    return this.httpClient.put(`${this.baseUrl1}/${id}`, product);
+  }
+
 
   deleteProduct(id: number | undefined): Observable<object>{
     return this.httpClient.delete(`${this.baseUrl}/${id}`);

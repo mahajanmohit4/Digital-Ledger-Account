@@ -1,7 +1,7 @@
 <app-nav-bar></app-nav-bar>
+<br><br><br><br><br><br><br>
 
-
-
+<!-- 
 <div class="container">
     <h2> Cart List</h2>
     <table class="table table-striped">
@@ -19,30 +19,116 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let cartitems of cartitem">
+            <tr *ngFor="let cartitems of Curruntcartitem">
                 <td> {{ cartitems.PName }} </td>
                 <td> {{ cartitems.PDisc }} </td>
                 <td> {{ cartitems.PQuantity }} </td>
                 <td> {{ cartitems.PCP }} </td>
                 <td> {{ cartitems.PSP }} </td>
-                <td>               
-                    <input #box1 [ngModel]="cartitems.IQuanitity" type="number"  (keyup.enter)="update1(box1.value)" (blur)="update1(box1.value)" min="1"
-                        max="30"  (blur)="updateItemQuantity(cartitems.CID)">
+                <td>
+                    <input #box1 [ngModel]="cartitems.IQuanitity" type="number" (keyup.enter)="update1(box1.value)"
+                        (blur)="update1(box1.value)" min="1" max="30" (blur)="updateItemQuantity(cartitems.CID)">
                 </td>
                 <td>
-                    <input #box2 [ngModel]="cartitems.Disount" type="number"  (keyup.enter)="update2(box2.value)" (blur)="update2(box2.value)" min="0"
-                        max="100"  (blur)="updateDiscount(cartitems.CID)">
+                    <input #box2 [ngModel]="cartitems.Disount" type="number" (keyup.enter)="update2(box2.value)"
+                        (blur)="update2(box2.value)" min="0" max="100" (blur)="updateDiscount(cartitems.CID)">
                 </td>
                 <td>
-                    <button (click) = "deleteProduct(cartitems.CID)" class = "btn btn-danger" style="margin-left: 10px"> Remove</button>
-                   
+                    <button (click)="deleteProduct(cartitems.CID)" class="btn btn-danger" style="margin-left: 10px">
+                        Remove</button>
+
                 </td>
             </tr>
         </tbody>
     </table>
-    <button (click) = "totalAmounts()" class = "btn btn-danger" > Get Amount</button>
+    <button (click)="totalAmounts()" class="btn btn-danger"> Get Amount</button>
 
     {{totalAmt}}
-<br>
-<button (click) = "sendToCustomer()" class="btn btn-success" type="submit">Add Customer Details </button>
+    <br>
+    <button (click)="sendToCustomer()" class="btn btn-success" type="submit">Add Customer Details </button>
+</div> -->
+
+
+
+
+
+
+
+<div class="container">
+    <div class="row">
+        <aside class="col-lg-9">
+            <div class="card">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-shopping-cart">
+                        <thead class="text-muted">
+                            <tr class="small text-uppercase">
+                                <th scope="col" width="500">Product</th>
+                                <th scope="col" width="250">Price</th>
+                                <th scope="col" width="100">Quantity</th>
+                                <th scope="col" width="100">Disount</th>
+                                <th scope="col" class="text-right d-none d-md-block" width="50"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cartitems of Curruntcartitem">
+                                <td>
+                                    <figure class="itemside align-items-center">
+                                        <div class="aside"><img
+                                                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRXTwa70Cyu_u0VxVWqmHSTL2DCbu8RE090UA&usqp=CAU"
+                                                class="img-sm"></div>
+                                        <figcaption class="info"><var class="price">{{ cartitems.PName }}</var> 
+                                            <p class="text-muted small">Discription: {{ cartitems.PDisc }} </p>
+                                        </figcaption>
+                                    </figure>
+                                </td>
+                                <td> 
+                                    <div class="price-wrap"> <var class="price">S.P.: ₹{{ cartitems.PSP }}</var> 
+                                        <small class="text-muted">
+                                         C.P.:   ₹{{ cartitems.PCP }} </small> </div>
+                                <td>
+                                    <input #box1 [ngModel]="cartitems.IQuanitity" type="number" (keyup.enter)="update1(box1.value)"
+                                    (blur)="update1(box1.value)" min="1" max="30" (blur)="updateItemQuantity(cartitems.CID)">
+                      
+                                </td>
+                                <td>
+                                    <input #box2 [ngModel]="cartitems.Disount" type="number" (keyup.enter)="update2(box2.value)"
+                                    (blur)="update2(box2.value)" min="0" max="100" (blur)="updateDiscount(cartitems.CID)">
+                    
+                                </td>
+                                
+                                <td >  <button (click)="deleteProduct(cartitems.CID)" class="btn btn-danger" style="margin-left: 10px">
+                                    Remove</button> </td>
+                            </tr>
+                         
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </aside>
+        <aside class="col-lg-3">
+            <div class="card">
+                <div class="card-body">
+                    <dl class="dlist-align">
+                        <dt>Total price:</dt>
+                        <dd class="text-right ml-3">₹{{totalAmt}}</dd>
+                    </dl>
+                    
+                    
+                    <hr> 
+                        <button (click)="totalAmounts()" class="btn btn-out btn-primary btn-square btn-main" data-abc="true"> Get Amount</button>
+                     <hr>                       
+
+                        <button (click)="sendToCustomer()" class="btn btn-out btn-success btn-square btn-main mt-2" data-abc="true" type="submit">Add Customer Details </button>
+
+                </div>
+            </div>
+        </aside>
+    </div>
 </div>
+
+
+
+
+<br><br><br>
+<br><br><br><br><br><br>
+<app-footer></app-footer>
